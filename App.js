@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput ,View, Alert,Button,Platform} from 'react-native';
+import { AppRegistry, StyleSheet, Text, TextInput ,View, Alert,Button,Platform,ActivityIndicator} from 'react-native';
 export default class LotsOfStyles extends Component {
 
   constructor(props){
@@ -8,6 +8,7 @@ export default class LotsOfStyles extends Component {
   this.state={
     name:"",
     passcode:"",
+    isLoading: true,
   };
 
   //this.onPressRegisterButton.bind(this);
@@ -19,19 +20,21 @@ export default class LotsOfStyles extends Component {
     var data = {
     "username": username,
     "password": pass,
+
   }
 
   console.log(JSON.stringify(data));
 
-  fetch("http://localhost:3000/addname", {
+promise :  fetch("http://localhost:3000/addname", {
    method: "POST",
    headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
    body:  JSON.stringify(data)
-});
-  }
+}).then(Alert.alert("Registered")).catch(Alert.alert("Not registerd")
+)
+}
 
   onPressLoginButton(){
 
@@ -39,6 +42,7 @@ export default class LotsOfStyles extends Component {
 
 
   render() {
+
     return (
       <View style={styles.container}>
         <Text style={styles.head}>Register</Text>
