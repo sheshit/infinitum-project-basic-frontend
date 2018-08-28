@@ -35,7 +35,6 @@ promise :  fetch("http://localhost:3000/addname", {
 }).then(Alert.alert("Registered")).catch(Alert.alert("Not registerd")
 )
 }
-
   onPressLoginButton(){
 
   }
